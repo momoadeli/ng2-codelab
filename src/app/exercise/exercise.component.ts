@@ -48,5 +48,6 @@ export class ExerciseComponent {
          console.log(file); // "4", "5", "6"
       }
     }
+    
   }
 }

@@ -1,4 +1,5 @@
 export enum ActionTypes {
+  LOAD_SOLUTION,
   TOGGLE_FILE,
   TOGGLE_AUTORUN,//momo
   OPEN_FEEDBACK,
