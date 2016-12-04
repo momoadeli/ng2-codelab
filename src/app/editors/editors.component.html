@@ -1,8 +1,8 @@
 <div class="editors">
   <div *ngFor="let file of visibleFiles" class="editor">
     <div class="filename" (click)="toggleFile(file)">
-      <span *ngIf="file.collapsed" class = "arrow">▷</span>
-      <span *ngIf="!file.collapsed"  class = "arrow">▽</span>
+      <span *ngIf="file.collapsed" class="arrow">▷</span>
+      <span *ngIf="!file.collapsed" class="arrow">▽</span>
       {{file.filename}} {{file.readonly?' (this file is read only) ': ''}}
     </div>
     <!-- momo -->

@@ -1,14 +1,14 @@
 import {TestBed} from '@angular/core/testing';
 import 'initTestBed';
-import {AppComponent} from '../4-component-tree/1-use-video-component/solution/AppComponent';
-import {appCode, videoCode, togglepanelCode, contextCode} from '../shared/code';
+import {AppComponent} from './AppComponent';
+import {appCode, videoCode, togglePanelCode, contextCode} from './code';
 import {AppModule} from "./AppModule";
 import {VideoComponent} from "./VideoComponent";
-import {VideoService} from "../shared/VideoService";
-import {TogglePanelComponent} from "../shared/TogglePanelComponent";
-import {ContextComponent} from "./solution/ContextComponent";
+import {VideoService} from "./VideoService";
+import {TogglePanelComponent} from "./TogglePanelComponent";
+import {ContextComponent} from "./ContextComponent";
 import {ContextService} from "./ContextService";
-import {Api} from "../shared/Api";
+import {Api} from "./Api";
 
 function objectValues(object) {
   return Object.keys(object).reduce((result, key) => {
@@ -38,7 +38,7 @@ beforeEach(() => {
   });
   TestBed.overrideComponent(AppComponent, {set: {template: appCode}});
   TestBed.overrideComponent(VideoComponent, {set: {template: videoCode}});
-  TestBed.overrideComponent(TogglePanelComponent, {set: {template: togglepanelCode}});
+  TestBed.overrideComponent(TogglePanelComponent, {set: {template: togglePanelCode}});
   TestBed.overrideComponent(ContextComponent, {set: {template: contextCode}});
   TestBed.compileComponents();
 });
@@ -54,12 +54,12 @@ describe('Children', () => {
     chai.expect(objectHasAn(fixture.componentInstance, VideoComponent)).to.be.true;
   });
 
-  it(`ContextComponent: Add an ngOnInit hook`, () => {
+  it(`ContextComponent: Add an ngOnInit method to the component. (It's a special method angular will call when the component is created).`, () => {
     const fixture = TestBed.createComponent(ContextComponent);
     chai.expect(fixture.componentInstance.ngOnInit).is.a('function');
   });
 
-  it(`ContextComponent: Call 'getAdText' on the service, and pass it the video 'description' provided by the injected video component. Assign the result to the declared text property.`, () => {
+  it(`ContextComponent: In the onOnInit method Call 'getAdText' on the service, and pass it the video 'description' provided by the injected video component. Assign the result to the declared text property.`, () => {
     const fixture = TestBed.createComponent(ContextComponent);
     let componentInstance = fixture.componentInstance;
 
@@ -71,6 +71,7 @@ describe('Children', () => {
     componentInstance[vcProp].video.description = 'music';
     componentInstance.ngOnInit();
     fixture.detectChanges();
+
     chai.expect(fixture.nativeElement.innerHTML).to.contain('speakers');
 
     componentInstance[vcProp].video.description = 'banana';
@@ -89,7 +90,7 @@ describe('Children', () => {
     chai.expect(metadata[0].declarations, `Video component not found`).contains(ContextComponent);
   });
 
-  it(`video.html: Actually display the ad.`, () => {
+  it(`video.html: Actually display the ad (We actually also did it for you).`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     // TODO: Actually write a test

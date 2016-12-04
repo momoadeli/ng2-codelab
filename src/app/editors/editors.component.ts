@@ -1,9 +1,8 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
 import {Action} from "../action";
 import {FileConfig} from "../file-config";
 import {StateService} from "../state.service";
-//momo
-import { AutorunControlInterface } from "../exercise/autoruncontrol.interface"
+import {EditorComponent} from "../editor/editor.component";
 
 
 @Component({
@@ -14,6 +13,7 @@ import { AutorunControlInterface } from "../exercise/autoruncontrol.interface"
 export class EditorsComponent {
   @Output() public onCodeChange: EventEmitter<Action> = new EventEmitter<Action>();
   @Input() public files: Array<any>;
+  @ViewChildren(EditorComponent) children: QueryList<EditorComponent>;
 
   get visibleFiles() {
     return this.files.filter(file => !file.hidden);
@@ -24,6 +24,16 @@ export class EditorsComponent {
 
   toggleFile(file: FileConfig) {
     this.state.toggleFile(file);
+  }
+
+  loadSolution(file: FileConfig) {
+    this.children.forEach(child => {
+      if (child.file === file) {
+        child.loadCode(file.solution);
+      }
+    });
+    // TODO: Do this the proper way.
+    //this.state.loadSolution(file);
   }
 
   get hiddenFiles() {
