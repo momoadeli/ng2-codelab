@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {FileConfig} from "../file-config";
 import {StateService, exerciseComplete} from "../state.service";
 import {ExerciseConfig} from "../exercise-config";
-import { AutorunControlInterface } from "./autoruncontrol.interface" //momo
+import { AutorunControlInterface } from "./autoruncontrol.interface" 
 
 @Component({
   selector: 'app-exercise',
@@ -29,16 +29,12 @@ export class ExerciseComponent {
 
   onCodeChange(changedFile) {
 
-    // momo
-
-    //if autorun is off save changed files in exercise for batch execution later (click on 'run')
-    //otherwise run on each chzaracter input (potenmtially sluggisg since writing to localStorage)
     if (this.currentAutorunState.autorun) { //autorun is ON
 
       this.state.updateCode(changedFile);
 
     }
-    else { //momo: manual run (autorun is OFF)
+    else { //manual run (autorun is OFF)--accumalte changed files
 
       if (changedFile) {
 
@@ -62,11 +58,11 @@ export class ExerciseComponent {
 
   }
 
-  //momo: act on changes in autorun component
+  //TODO_MOMO:  perhsps pass intp autoruncontrol as @Input
   onAutorunChange(changeAutorun) {
 
-    this.currentAutorunState = changeAutorun; //always update state
-    //disregard if run isn't clicked
+    this.currentAutorunState = changeAutorun; 
+
     if (!this.currentAutorunState.running)
       return;
 
