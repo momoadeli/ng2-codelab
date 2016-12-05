@@ -5,7 +5,7 @@ import {StateService, exerciseComplete} from "../state.service";
 import {ExerciseConfig} from "../exercise-config";
 import {CodelabConfig} from "../codelab-config";
 import { AutorunControlInterface } from "./autoruncontrol.interface"
-import {codelabConfig} from "../codelab/codelab-config";
+import {codelabConfig} from "../../exercises/codelab-config";
 
 //momo
 import {Observable, Subject} from "rxjs/Rx";
