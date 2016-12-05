@@ -34,7 +34,7 @@ export class AutorunControlComponent implements OnInit{
 	//moomo
 	toggleAutorun() {
 		this.autorunEvent.autorun = !this.config.autorun;
-		// this.autorunEvent.running = false;  //always reset 'running' to false when toggling autorun
+		this.autorunEvent.running = false;  //always reset 'running' to false when toggling autorun
 		this.onAutorunChange.emit(this.autorunEvent);
 	}
 

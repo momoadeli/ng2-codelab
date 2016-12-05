@@ -233,8 +233,9 @@ export const codelabConfig: CodelabConfig = {
     name: 'Angular2 codelab',
     user: '',
     auth: {},
-    page: 'milestone',
+    page: 'milestone', //momo
     selectedMilestoneIndex: 0,
+    autorun:false,
     milestones: [
       {
         /**

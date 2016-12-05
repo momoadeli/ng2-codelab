@@ -88,7 +88,7 @@ export class StateService {
   }
 
   getAutorun() {
-    return JSON.parse(localStorage.getItem('state'));
+    return JSON.parse(localStorage.getItem('state')).autorun;
   }
 
   openFeedback() {
