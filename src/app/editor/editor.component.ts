@@ -1,12 +1,8 @@
-import {
-  Component, ApplicationRef, forwardRef, ViewChild, ElementRef, Input, EventEmitter, Output,
-  AfterViewInit, ContentChild, TemplateRef
-} from '@angular/core';
+import {Component, forwardRef, ViewChild, ElementRef, Input, EventEmitter, Output, AfterViewInit} from "@angular/core";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
-import {Http} from "@angular/http";
-import {Observable, Subject} from "rxjs/Rx";
-import 'rxjs/add/operator/debounceTime'
+import "rxjs/add/operator/debounceTime";
 import {FileConfig} from "../file-config";
+import {Subject} from "rxjs";
 
 declare const monaco: any;
 declare const require: any;
@@ -38,19 +34,19 @@ export class EditorComponent implements AfterViewInit {
   height = 0;
   code: string;
 
-  calcHeight(lines) {
+  static calcHeight(lines) {
     return lines * 17;
   }
 
 
-  constructor(private http: Http, private applicationRef: ApplicationRef) {
-
+  constructor() {
     this.editSub = new Subject<String>();
     this.editSub.debounceTime(1000).subscribe((value) => {
       this.onCodeChange.emit(value);
     });
   }
-  loadCode(code: string){
+
+  loadCode(code: string) {
     this._editor.getModel().setValue(code);
   }
 
@@ -76,7 +72,6 @@ export class EditorComponent implements AfterViewInit {
   }
 
   static configureMonaco() {
-
     monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
       experimentalDecorators: true,
       allowNonTsExtensions: true
@@ -130,7 +125,7 @@ export class EditorComponent implements AfterViewInit {
       this.updateValue(this._editor.getModel().getValue());
     });
 
-    const height = Math.max(100, this.calcHeight(this.file.code.split('\n').length));
+    const height = Math.max(100, EditorComponent.calcHeight(this.file.code.split('\n').length));
     this._editor.layout({height: height + 20, width: 700});
   }
 

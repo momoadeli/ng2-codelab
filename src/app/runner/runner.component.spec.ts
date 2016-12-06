@@ -1,9 +1,8 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { RunnerComponent } from './runner.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {RunnerComponent} from "./runner.component";
+import {StateService} from "../state.service";
+import {Subject} from "rxjs";
 
 describe('RunnerComponent', () => {
   let component: RunnerComponent;
@@ -11,9 +10,16 @@ describe('RunnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RunnerComponent ]
+      declarations: [RunnerComponent],
+      providers: [{
+        provide: StateService, useValue: {
+          update: new Subject(),
+          ping: () => {
+          }
+        }
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

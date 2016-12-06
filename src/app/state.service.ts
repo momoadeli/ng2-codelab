@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Http} from "@angular/http";
+import {Injectable} from "@angular/core";
 import {Observable, BehaviorSubject} from "rxjs/Rx";
 import {CodelabConfig} from "./codelab-config";
-import {ActionInit} from "./action-init";
 import {Action} from "./action";
-import {codelabConfig} from "../exercises/codelab-config";
 import {ActionTypes} from "./action-types.enum";
 import {ExerciseConfig} from "./exercise-config";
 import {MilestoneConfig} from "./milestone-config";
 import {ReducersService} from "./reducers.service";
 import {assert} from "./utils";
 import {FileConfig} from "./file-config";
+import {CodelabConfigService} from "../exercises/codelab-config-service";
 
 
 export function selectedMilestone(state: CodelabConfig): MilestoneConfig {
@@ -30,7 +28,7 @@ export class StateService {
   public readonly update: Observable<CodelabConfig>;
   private readonly dispatch = new BehaviorSubject<Action>({type: ActionTypes.INIT_STATE, data: {}});
 
-  constructor(private reducers: ReducersService) {
+  constructor(private reducers: ReducersService, codelabConfig: CodelabConfigService) {
 
     this.update = this.dispatch
       .mergeScan<CodelabConfig>((state: CodelabConfig, action: Action): any => {
@@ -47,7 +45,7 @@ export class StateService {
           debugger
         }
         return state;
-      }, codelabConfig)
+      }, codelabConfig.config)
       .map((state: CodelabConfig) => {
         localStorage.setItem('state', JSON.stringify(state));
         return state;
@@ -86,10 +84,13 @@ export class StateService {
     this.dispatchAction(ActionTypes.TOGGLE_AUTORUN);
   }
 
+<<<<<<< HEAD
   getAutorun() {
     return JSON.parse(localStorage.getItem('state')).autorun;
   }
 
+=======
+>>>>>>> 6846a5bc02b62f44457239c8679022a269ac686a
   openFeedback() {
     this.dispatchAction(ActionTypes.OPEN_FEEDBACK);
   }
@@ -118,9 +119,8 @@ export class StateService {
     this.dispatchAction(ActionTypes.UPDATE_SINGLE_TEST_RESULT, test);
   }
 
-  ping() {
-    // This is a hack. See http://jsbin.com/yuqeniqena/1/edit?js,output
-    this.dispatchAction(ActionTypes.PING);
+  run() {
+    this.dispatchAction(ActionTypes.RUN_CODE);
   }
 
   toggleFile(file: FileConfig) {

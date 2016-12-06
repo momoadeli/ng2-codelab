@@ -1,9 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { MilestoneComponent } from './milestone.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {MilestoneComponent} from "./milestone.component";
 
 describe('MilestoneComponent', () => {
   let component: MilestoneComponent;
@@ -11,9 +8,10 @@ describe('MilestoneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MilestoneComponent ]
+      declarations: [MilestoneComponent]
     })
-    .compileComponents();
+      .overrideComponent(MilestoneComponent, {set: {template: 'hi'}})
+      .compileComponents();
   }));
 
   beforeEach(() => {

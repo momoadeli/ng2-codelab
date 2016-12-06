@@ -1,9 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { ExerciseComponent } from './exercise.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {ExerciseComponent} from "./exercise.component";
 
 describe('ExerciseComponent', () => {
   let component: ExerciseComponent;
@@ -11,9 +8,10 @@ describe('ExerciseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExerciseComponent ]
+      declarations: [ExerciseComponent]
     })
-    .compileComponents();
+      .overrideComponent(ExerciseComponent, {set: {template: 'hi'}})
+      .compileComponents();
   }));
 
   beforeEach(() => {

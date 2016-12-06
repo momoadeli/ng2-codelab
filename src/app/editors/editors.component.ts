@@ -1,5 +1,4 @@
-import {Component, Input, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
-import {Action} from "../action";
+import {Component, Input, ViewChildren, QueryList} from "@angular/core";
 import {FileConfig} from "../file-config";
 import {StateService} from "../state.service";
 import {EditorComponent} from "../editor/editor.component";
@@ -11,12 +10,15 @@ import {EditorComponent} from "../editor/editor.component";
   styleUrls: ['./editors.component.css']
 })
 export class EditorsComponent {
-  @Output() public onCodeChange: EventEmitter<Action> = new EventEmitter<Action>();
   @Input() public files: Array<any>;
   @ViewChildren(EditorComponent) children: QueryList<EditorComponent>;
 
   get visibleFiles() {
     return this.files.filter(file => !file.hidden);
+  }
+
+  onCodeChange(changedFile) {
+    this.state.updateCode(changedFile);
   }
 
   constructor(private  state: StateService) {
@@ -34,9 +36,5 @@ export class EditorsComponent {
     });
     // TODO: Do this the proper way.
     //this.state.loadSolution(file);
-  }
-
-  get hiddenFiles() {
-    return this.files.filter(file => !file.hidden);
   }
 }

@@ -1,9 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from "@angular/core";
 import {MilestoneConfig} from "../milestone-config";
-import {ExerciseConfig} from "../exercise-config";
-import {Observable} from "rxjs/Rx";
-import {Http} from "@angular/http";
-import {StateService, exerciseComplete} from "../state.service";
+import {StateService} from "../state.service";
 
 
 @Component({
@@ -14,11 +11,6 @@ import {StateService, exerciseComplete} from "../state.service";
 export class MilestoneComponent {
   @Input() config: MilestoneConfig;
   @Input() name: string;
-
-  exerciseComplete(exercise: ExerciseConfig) {
-    // TODO: Use pipe
-    return exerciseComplete(exercise);
-  }
 
   constructor(public state: StateService) {
   }

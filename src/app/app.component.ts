@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 import {StateService} from "./state.service";
-import {AngularFire, FirebaseListObservable, AuthProviders, AuthMethods} from 'angularfire2';
+import {AngularFire} from "angularfire2";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {AngularFire, FirebaseListObservable, AuthProviders, AuthMethods} from 'a
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  user_progresses = this.angularFire.database.list('/user_progress');
+  //user_progresses = this.angularFire.database.list('/user_progress');
   currentState = {};
   remoteStateLoaded = false;
   auth = {uid: ''};
